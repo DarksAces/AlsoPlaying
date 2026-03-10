@@ -4089,10 +4089,6 @@ class CreatorApp:
                     )
             except Exception as e:
                 if "RuntimeError" in str(e): raise e
-                # Si falló por otra cosa (timeout, etc), intentamos seguir pero avisamos en log
-                print(f"[DEBUG] Error validando tkinter: {e}")
-
-            creation_flags = 0x08000000 if sys.platform == "win32" else 0
 
             # ── 4a. Auto-detectar / instalar PyInstaller ──────────────────────
             def _pi_installed():
@@ -4493,11 +4489,10 @@ def check_environment():
                 python_ver = f"{v[0]}.{v[1]}"
                 break
 
-    print(f"[DEBUG] Python elegido: {python_path} (Ver: {python_ver})")
+
 
     # ── 1. Comprobar Python ───────────────────────────────────────────────────
     if not python_path:
-        print("[DEBUG] No se encontró ninguna instalación de Python válida.")
         import tkinter as _tk
         from tkinter import messagebox as _mb
         _r = _tk.Tk(); _r.withdraw()
@@ -4539,12 +4534,10 @@ def check_environment():
             capture_output=True, text=True
         )
         ver_str = result.stdout.strip() or result.stderr.strip()
-        print(f"[DEBUG] Verificando versión: {ver_str}")
         # Extraer número: "Python 3.13.1" → (3, 13)
         parts = ver_str.replace("Python", "").strip().split(".")
         major, minor = int(parts[0]), int(parts[1])
         if (major, minor) < (3, 13):
-            print(f"[DEBUG] Versión insuficiente ({major}.{minor}). Se requiere 3.13+")
             import tkinter as _tk
             from tkinter import messagebox as _mb
             _r = _tk.Tk(); _r.withdraw()
