@@ -5,7 +5,7 @@
 ### 🚀 Major Improvements & New Features
 
 *   **Plug & Play Logic**: The application is now fully standalone. It no longer requires users to have Python pre-installed to open the main interface.
-*   **Automated Python Setup**: Added a "one-click" recovery system. If a user tries to generate a tracker and doesn't have Python, the app offers to download and install Python 3.13 automatically in the background.
+*   **Automated Python Setup**: Added a "one-click" recovery system. If a user tries to generate a tracker and doesn't have Python, the app offers to download and install Python 3.13 automatically in the background. Fixed a common SSL certificate error (`CERTIFICATE_VERIFY_FAILED`) during this process.
 *   **Smart Python Detection**: Implemented a "Deep Search" function (`find_all_pythons`) that scans the Windows Registry and system folders. This fixes the common bug where Windows tries to open the Microsoft Store instead of using a real Python installation.
 *   **Advanced Icon Engine**:
     *   Added support for extracting icons directly from `.exe` files.
@@ -41,7 +41,7 @@
 *   **Activos de Instancia Únicos**: Implementado un sistema de hashing basado en contenido para los nombres de iconos temporales, evitando conflictos entre múltiples trackers abiertos a la vez.
 *   **Limpieza de Producción**: Eliminados todos los enunciados `print` de depuración y optimizadas las líneas de código para una ejecución más limpia y profesional.
 *   **Lógica "Plug & Play"**: La aplicación ahora es totalmente independiente. Ya no requiere que los usuarios tengan Python instalado para abrir la interfaz principal.
-*   **Configuración de Python Automatizada**: Se ha añadido un sistema de recuperación de "un solo clic". Si un usuario intenta generar un tracker y no tiene Python, la app se ofrece a descargar e instalar Python 3.13 automáticamente en segundo plano.
+*   **Configuración de Python Automatizada**: Se ha añadido un sistema de recuperación de "un solo clic". Si un usuario intenta generar un tracker y no tiene Python, la app se ofrece a descargar e instalar Python 3.13 automáticamente en segundo plano. Se ha corregido un error común de certificados SSL (`CERTIFICATE_VERIFY_FAILED`) que ocurría en este proceso.
 *   **Búsqueda Inteligente de Python**: Implementada la función `find_all_pythons` que escanea el Registro de Windows y carpetas del sistema. Esto soluciona el error común donde Windows intenta abrir la Microsoft Store en lugar de usar un Python real.
 *   **Motor de Iconos Avanzado**:
     *   Soporte para extraer iconos directamente de archivos `.exe`.

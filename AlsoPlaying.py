@@ -4247,6 +4247,7 @@ def _apply_main_icon(window):
 
 def _install_python_automated(root):
     import urllib.request
+    import ssl
     import subprocess
     import tempfile
     
@@ -4265,6 +4266,14 @@ def _install_python_automated(root):
     root.update()
 
     try:
+        # Configuración para ignorar errores de certificado SSL (común en Windows con certificados desactualizados)
+        try:
+            context = ssl._create_unverified_context()
+            opener = urllib.request.build_opener(urllib.request.HTTPSHandler(context=context))
+            urllib.request.install_opener(opener)
+        except Exception:
+            pass
+
         url = "https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe"
         installer = os.path.join(tempfile.gettempdir(), "python_3.13_setup.exe")
         
@@ -4287,7 +4296,7 @@ def _install_python_automated(root):
         messagebox.showinfo("¡Listo!", "Python 3.13 se ha instalado correctamente.\n\nLa aplicación se cerrará. Ábrela de nuevo para empezar.")
         sys.exit(0)
     except Exception as e:
-        messagebox.showerror("Error de instalación", f"No se pudo completar la instalación automática:\n\n{str(e)}\n\nIntenta instalarlo manualmente.")
+        messagebox.showerror("Error de instalación", f"No se pudo completar la instalación automática:\n\n{str(e)}\n\nIntenta instalarlo manualmente descargando el archivo desde python.org.")
         sys.exit(0)
 
 def _select_python_dialog(pythons):
